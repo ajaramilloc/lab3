@@ -1,0 +1,1 @@
+/usr/bin/gcc -g CMakeFiles/subscriber_udp.dir/subscriber_udp.c.o -o subscriber_udp 

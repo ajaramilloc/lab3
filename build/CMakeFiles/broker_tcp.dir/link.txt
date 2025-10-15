@@ -1,0 +1,1 @@
+/usr/bin/gcc -g CMakeFiles/broker_tcp.dir/broker_tcp.c.o -o broker_tcp 

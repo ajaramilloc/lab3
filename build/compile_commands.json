@@ -1,0 +1,38 @@
+[
+{
+  "directory": "/home/jaraction/Documents/lab3/build",
+  "command": "/usr/bin/gcc -DNUM_BROKERS=1 -DNUM_MESSAGES=10 -DNUM_PUBLISHERS=2 -DNUM_SUBSCRIBERS=2  -g -std=gnu99 -o CMakeFiles/broker_tcp.dir/broker_tcp.c.o -c /home/jaraction/Documents/lab3/broker_tcp.c",
+  "file": "/home/jaraction/Documents/lab3/broker_tcp.c",
+  "output": "CMakeFiles/broker_tcp.dir/broker_tcp.c.o"
+},
+{
+  "directory": "/home/jaraction/Documents/lab3/build",
+  "command": "/usr/bin/gcc -DNUM_BROKERS=1 -DNUM_MESSAGES=10 -DNUM_PUBLISHERS=2 -DNUM_SUBSCRIBERS=2  -g -std=gnu99 -o CMakeFiles/publisher_tcp.dir/publisher_tcp.c.o -c /home/jaraction/Documents/lab3/publisher_tcp.c",
+  "file": "/home/jaraction/Documents/lab3/publisher_tcp.c",
+  "output": "CMakeFiles/publisher_tcp.dir/publisher_tcp.c.o"
+},
+{
+  "directory": "/home/jaraction/Documents/lab3/build",
+  "command": "/usr/bin/gcc -DNUM_BROKERS=1 -DNUM_MESSAGES=10 -DNUM_PUBLISHERS=2 -DNUM_SUBSCRIBERS=2  -g -std=gnu99 -o CMakeFiles/subscriber_tcp.dir/subscriber_tcp.c.o -c /home/jaraction/Documents/lab3/subscriber_tcp.c",
+  "file": "/home/jaraction/Documents/lab3/subscriber_tcp.c",
+  "output": "CMakeFiles/subscriber_tcp.dir/subscriber_tcp.c.o"
+},
+{
+  "directory": "/home/jaraction/Documents/lab3/build",
+  "command": "/usr/bin/gcc -DNUM_BROKERS=1 -DNUM_MESSAGES=10 -DNUM_PUBLISHERS=2 -DNUM_SUBSCRIBERS=2  -g -std=gnu99 -o CMakeFiles/broker_udp.dir/broker_udp.c.o -c /home/jaraction/Documents/lab3/broker_udp.c",
+  "file": "/home/jaraction/Documents/lab3/broker_udp.c",
+  "output": "CMakeFiles/broker_udp.dir/broker_udp.c.o"
+},
+{
+  "directory": "/home/jaraction/Documents/lab3/build",
+  "command": "/usr/bin/gcc -DNUM_BROKERS=1 -DNUM_MESSAGES=10 -DNUM_PUBLISHERS=2 -DNUM_SUBSCRIBERS=2  -g -std=gnu99 -o CMakeFiles/publisher_udp.dir/publisher_udp.c.o -c /home/jaraction/Documents/lab3/publisher_udp.c",
+  "file": "/home/jaraction/Documents/lab3/publisher_udp.c",
+  "output": "CMakeFiles/publisher_udp.dir/publisher_udp.c.o"
+},
+{
+  "directory": "/home/jaraction/Documents/lab3/build",
+  "command": "/usr/bin/gcc -DNUM_BROKERS=1 -DNUM_MESSAGES=10 -DNUM_PUBLISHERS=2 -DNUM_SUBSCRIBERS=2  -g -std=gnu99 -o CMakeFiles/subscriber_udp.dir/subscriber_udp.c.o -c /home/jaraction/Documents/lab3/subscriber_udp.c",
+  "file": "/home/jaraction/Documents/lab3/subscriber_udp.c",
+  "output": "CMakeFiles/subscriber_udp.dir/subscriber_udp.c.o"
+}
+]

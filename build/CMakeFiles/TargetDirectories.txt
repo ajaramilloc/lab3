@@ -1,0 +1,8 @@
+/home/jaraction/Documents/lab3/build/CMakeFiles/broker_tcp.dir
+/home/jaraction/Documents/lab3/build/CMakeFiles/publisher_tcp.dir
+/home/jaraction/Documents/lab3/build/CMakeFiles/subscriber_tcp.dir
+/home/jaraction/Documents/lab3/build/CMakeFiles/broker_udp.dir
+/home/jaraction/Documents/lab3/build/CMakeFiles/publisher_udp.dir
+/home/jaraction/Documents/lab3/build/CMakeFiles/subscriber_udp.dir
+/home/jaraction/Documents/lab3/build/CMakeFiles/edit_cache.dir
+/home/jaraction/Documents/lab3/build/CMakeFiles/rebuild_cache.dir

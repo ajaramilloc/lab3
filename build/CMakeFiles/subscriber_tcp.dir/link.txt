@@ -1,0 +1,1 @@
+/usr/bin/gcc -g CMakeFiles/subscriber_tcp.dir/subscriber_tcp.c.o -o subscriber_tcp 

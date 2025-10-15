@@ -1,0 +1,1 @@
+/usr/bin/gcc -g CMakeFiles/broker_udp.dir/broker_udp.c.o -o broker_udp 

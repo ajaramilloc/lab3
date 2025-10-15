@@ -1,0 +1,1 @@
+/usr/bin/gcc -g CMakeFiles/publisher_udp.dir/publisher_udp.c.o -o publisher_udp 

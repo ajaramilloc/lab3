@@ -1,0 +1,1 @@
+/usr/bin/gcc -g CMakeFiles/publisher_tcp.dir/publisher_tcp.c.o -o publisher_tcp 

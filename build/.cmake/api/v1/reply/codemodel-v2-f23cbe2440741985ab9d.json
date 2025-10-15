@@ -1,0 +1,105 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"jsonFile" : "directory-.-Debug-f5ebdc15457944623624.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.10"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "PubSubLab",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "broker_tcp::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-broker_tcp-Debug-1c44ce76586357f2bfbc.json",
+					"name" : "broker_tcp",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "broker_udp::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-broker_udp-Debug-babae2ad4f37d62131ef.json",
+					"name" : "broker_udp",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "publisher_tcp::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-publisher_tcp-Debug-2a9897d00c94e7623318.json",
+					"name" : "publisher_tcp",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "publisher_udp::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-publisher_udp-Debug-37907af9cef3ef171a26.json",
+					"name" : "publisher_udp",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "subscriber_tcp::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-subscriber_tcp-Debug-93e1fcdfd8945e37080b.json",
+					"name" : "subscriber_tcp",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "subscriber_udp::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-subscriber_udp-Debug-fdc1cb963116efb99fab.json",
+					"name" : "subscriber_udp",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/home/jaraction/Documents/lab3/build",
+		"source" : "/home/jaraction/Documents/lab3"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 6
+	}
+}
