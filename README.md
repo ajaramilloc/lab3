@@ -114,13 +114,3 @@ En **TCP**, el kernel implementa la retransmisión automática y control de fluj
    - Puede analizar pérdidas en UDP comparando los números de secuencia.
 
 ---
-
-## 🧭 Diagrama de interacción
-
-
-
-El diagrama muestra cómo se comunican los **publishers**, el **broker** y los **subscribers** tanto en **TCP (líneas continuas)** como en **UDP (líneas punteadas)**.
-
----
-
----
