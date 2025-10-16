@@ -1,9 +1,9 @@
 
-# 🛰️ Sistema Publicador–Suscriptor en C (TCP / UDP)
+# Publicador–Suscriptor en C (TCP / UDP)
 
 Este proyecto implementa un sistema **publisher–subscriber** en C con soporte para **TCP** y **UDP**, permitiendo enviar y recibir mensajes entre múltiples publicadores y suscriptores a través de un **broker central**.
 
-## 📂 Estructura del proyecto
+## Estructura del proyecto
 
 ```
 ├── broker_tcp.c
@@ -18,7 +18,7 @@ Este proyecto implementa un sistema **publisher–subscriber** en C con soporte 
 
 ---
 
-## 🚀 Descripción general
+## Descripción general
 
 El proyecto implementa un **modelo publicador–suscriptor (pub/sub)**:
 
@@ -30,7 +30,7 @@ El proyecto implementa un **modelo publicador–suscriptor (pub/sub)**:
 
 ---
 
-## ⚙️ Ejecución
+## Ejecución
 
 ### 🔹 TCP
 Cada componente se ejecuta en una terminal distinta:
@@ -69,7 +69,7 @@ Cada publisher envía x mensajes numerados, y los subscribers los registran para
 
 ---
 
-## 🧩 Librerías utilizadas y su interacción
+## Librerías utilizadas y su interacción
 
 El código usa las siguientes librerías estándar del sistema:
 
@@ -82,11 +82,99 @@ El código usa las siguientes librerías estándar del sistema:
 | `<arpa/inet.h>` | Manejo de direcciones IP (htonl, htons, inet_addr). | Traduce direcciones y puertos a formato compatible con el kernel. |
 | `<sys/socket.h>` | Creación, envío y recepción de sockets. | Crea puntos de comunicación a través de llamadas al kernel (`socket()`, `sendto()`, `recvfrom()`). |
 | `<netinet/in.h>` | Define estructuras y constantes para redes (AF_INET, SOCK_DGRAM, etc.). | Especifica cómo el sistema operativo debe manejar protocolos TCP/UDP. |
-| `<pthread.h>` *(si aplica)* | Manejo de hilos para paralelismo en broker o subs. | Crea threads en espacio de usuario, coordinados por el kernel. |
+---
+
+## Ejemplos de uso de las librerías en el código
+
+### 1. Creación del socket (`sys/socket.h`, `netinet/in.h`)
+
+La función `socket()` crea un **descriptor de archivo** en el sistema operativo, que representa el canal de comunicación entre procesos o equipos.
+
+```c
+int sockfd = socket(AF_INET, SOCK_DGRAM, 0);
+if (sockfd < 0) {
+    perror("Error al crear socket");
+    exit(1);
+}
+```
+
+    AF_INET indica que se usa IPv4.
+
+    SOCK_DGRAM crea un socket UDP (si fuera SOCK_STREAM, sería TCP).
+
+    El kernel asigna un número de descriptor de archivo, manejando internamente la conexión con la pila de red.
+
+### 2. Asociación del socket a una dirección (bind())
+
+El sistema operativo vincula el socket a un puerto y dirección IP.
+Esto reserva el puerto en la tabla de conexiones del kernel.
+```c
+struct sockaddr_in server_addr;
+server_addr.sin_family = AF_INET;
+server_addr.sin_addr.s_addr = INADDR_ANY;
+server_addr.sin_port = htons(8080);
+
+if (bind(sockfd, (struct sockaddr *)&server_addr, sizeof(server_addr)) < 0) {
+    perror("Error en bind");
+    exit(1);
+}
+```
+
+    bind() comunica al kernel que este proceso atenderá el puerto 8080.
+
+    Si otro proceso intenta usar el mismo puerto, el sistema devolverá un error.
+
+### 3. Envío de datos (sendto() o send())
+
+Dependiendo del protocolo, el envío de datos al kernel cambia:
+
+    UDP usa sendto(), indicando destino en cada envío.
+
+    TCP usa send(), tras haber establecido conexión.
+```c
+char *mensaje = "Hola desde Publisher";
+sendto(sockfd, mensaje, strlen(mensaje), 0,
+       (struct sockaddr *)&server_addr, sizeof(server_addr));
+```
+
+    El kernel encapsula los datos en un datagrama UDP.
+
+    La interfaz de red se encarga de transmitir el paquete físicamente.
+
+### 4. Recepción de datos (recvfrom() o recv())
+
+Cuando llega un mensaje, el kernel lo almacena en el buffer de recepción del proceso.
+Luego, recvfrom() lo extrae y lo coloca en memoria de usuario.
+
+```c
+char buffer[1024];
+socklen_t addr_len = sizeof(client_addr);
+int n = recvfrom(sockfd, buffer, sizeof(buffer), 0,
+                 (struct sockaddr *)&client_addr, &addr_len);
+buffer[n] = '\0';
+printf("Mensaje recibido: %s\n", buffer);
+```
+
+    recvfrom() bloquea la ejecución hasta que haya datos disponibles.
+
+    El kernel borra el paquete del buffer una vez entregado al proceso.
+
+### 5. Cierre de conexión (close())
+
+Una vez terminada la comunicación, se libera el descriptor del socket.
+Esto informa al sistema operativo que el recurso ya no se usará.
+
+```c
+close(sockfd);
+```
+
+    El kernel elimina el descriptor de su tabla interna.
+
+    Cierra cualquier canal asociado, liberando memoria y puertos.
 
 ---
 
-## 🧠 Comunicación con el sistema operativo
+## Comunicación con el sistema operativo
 
 Cada componente se comunica con el sistema operativo mediante **llamadas al sistema (syscalls)**:
 
@@ -102,7 +190,7 @@ En **TCP**, el kernel implementa la retransmisión automática y control de fluj
 
 ---
 
-## 📡 Cómo interactúan los componentes
+## Cómo interactúan los componentes
 
 1. **Broker**:
    - Crea un socket y lo mantiene escuchando (`bind`, `recvfrom` o `accept`).
