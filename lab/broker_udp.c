@@ -82,8 +82,8 @@ int main() {
             }
         } else {
             // Mensaje de publisher
-            char partido[50], evento[100];
-            sscanf(buffer, "%49[^:]:%99[^\n]", partido, evento);
+            char partido[50], evento[1000];
+            sscanf(buffer, "%49[^:]:%999[^\n]", partido, evento);
             printf("Broker recibió (%s): %s\n", partido, evento);
 
             for (i = 0; i < MAX_SUBS; i++) {

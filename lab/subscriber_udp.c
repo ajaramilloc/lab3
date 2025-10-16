@@ -1,4 +1,4 @@
-// subscriber_udp.c
+// subscriber_udp_fixed.c
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -10,7 +10,7 @@
 
 int main() {
     int sockfd;
-    struct sockaddr_in servaddr, cliaddr;
+    struct sockaddr_in servaddr, cliaddr, myaddr;
     socklen_t len;
     char buffer[BUFFER_SIZE];
     char partido[50];
@@ -20,9 +20,23 @@ int main() {
         exit(EXIT_FAILURE);
     }
 
-    memset(&servaddr, 0, sizeof(servaddr));
-    memset(&cliaddr, 0, sizeof(cliaddr));
+    // Bind a puerto local aleatorio (0 = asignación automática)
+    memset(&myaddr, 0, sizeof(myaddr));
+    myaddr.sin_family = AF_INET;
+    myaddr.sin_addr.s_addr = INADDR_ANY;
+    myaddr.sin_port = 0;  // Puerto aleatorio
+    
+    if (bind(sockfd, (const struct sockaddr *)&myaddr, sizeof(myaddr)) < 0) {
+        perror("bind failed");
+        exit(EXIT_FAILURE);
+    }
+    
+    // Obtener el puerto asignado
+    socklen_t myaddr_len = sizeof(myaddr);
+    getsockname(sockfd, (struct sockaddr *)&myaddr, &myaddr_len);
+    printf("[DEBUG] Subscriber escuchando en puerto local: %d\n", ntohs(myaddr.sin_port));
 
+    memset(&servaddr, 0, sizeof(servaddr));
     servaddr.sin_family = AF_INET;
     servaddr.sin_port = htons(PORT);
     servaddr.sin_addr.s_addr = inet_addr("127.0.0.1");
@@ -43,8 +57,11 @@ int main() {
         len = sizeof(cliaddr);
         int n = recvfrom(sockfd, buffer, BUFFER_SIZE, 0,
                          (struct sockaddr *)&cliaddr, &len);
-        buffer[n] = '\0';
-        printf("[EVENTO] %s\n", buffer);
+        if (n > 0) {
+            buffer[n] = '\0';
+            printf("[EVENTO] %s\n", buffer);
+            fflush(stdout);
+        }
     }
 
     close(sockfd);
